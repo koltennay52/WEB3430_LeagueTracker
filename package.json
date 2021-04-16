@@ -1,17 +1,22 @@
 {
-  "name": "project-starter",
+  "name": "koltens-league-tracker",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Abdulmalek Al-Gahmi",
+  "author": "Kolten Nay",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "league",
+    "tracker"
+  ],
   "scripts": {
     "deploy": "npx webpack",
-    "start": "npx webpack-dev-server"
+    "start": "npx webpack-dev-server",
+    "server": "nodemon --exec babel-node server.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
+    "@babel/node": "^7.13.0",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "autoprefixer": "^9.8.6",
@@ -29,7 +34,25 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "formik": "^2.2.6",
+    "http-errors": "^1.8.0",
+    "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "popper.js": "^1.16.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-cookie": "^4.0.3",
+    "react-dom": "^16.13.1",
+    "react-toastify": "^7.0.3",
+    "yup": "^0.32.9"
   }
 }
