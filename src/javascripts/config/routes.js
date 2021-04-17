@@ -13,3 +13,20 @@ export function configureRoutes(app) {
     
     app.use('/', router)
 }
+
+
+export function getCurrentUser(req) {
+    if (req.cookies.token) {
+        return jwt.decode(req.cookies.token, APP_SECRET);
+    } else {
+        return null;
+    }
+}
+
+export function getUser(token) {
+    if (token) {
+        return jwt.decode(token, APP_SECRET);
+    } else {
+        return null;
+    }
+}

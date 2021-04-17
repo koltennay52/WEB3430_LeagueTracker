@@ -1,7 +1,7 @@
 
 import {configureRoutes} from './src/javascripts/config/routes';
-// import {strategy} from './src/javascripts/config/passport';
-// import passport from 'passport';
+import {strategy} from './src/javascripts/config/passport';
+import passport from 'passport';
 
 
 let createError = require('http-errors');
@@ -24,9 +24,9 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Authentication
-// passport.use(strategy);
-// app.use(passport.initialize());
+//Authentication
+passport.use(strategy);
+app.use(passport.initialize());
 
 //Routes
 configureRoutes(app);
