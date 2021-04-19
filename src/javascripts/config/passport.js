@@ -1,13 +1,14 @@
 const LocalStrategy = require('passport-local').Strategy
 import { User } from '../models/user'
 export const strategy = new LocalStrategy(
-    function(username,password,done){
-        User.findOne({username: username}, (err,user) => {
+    function(summonerName,password,done){
+        User.findOne({summonerName: summonerName}, (err,user) => {
+            console.log(user)
             if(err){
                 return done(err)
             } else {
                 if(!user) {
-                    return done(null,false,{message: "User was not found in the database."})
+                    return done(null,false,{message: "Summoner was not found in the database."})
                 } else {
                     if(!user.isValidPassword(password)){
                         return done(null,false,{message: "Password was incorrect."}) 

@@ -4,15 +4,14 @@ import {getUser} from "../config/routes"
 
 export const registerUserAPI = (req, res, next) => {
   let user = new User();
-  user.firstName = req.body.firstName;
-  user.lastName = req.body.lastName;
+
+  user.summonerName = req.body.summonerName;
   user.email = req.body.email;
-  user.username = req.body.username;
   user.setPassword(req.body.password);
 
   user.save((err) => {
     if (err) {
-      res.json({ success: false, message: "Unable to register user" });
+      res.json({ success: false, message: "Unable to register summoner" });
       res.end();
     } else {
       res.end();
