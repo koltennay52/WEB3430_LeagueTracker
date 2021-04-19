@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
 import { User } from '../models/user'
-export const strategy = new LocalStrategy(
+export const strategy = new LocalStrategy({usernameField: 'summonerName'},
     function(summonerName,password,done){
         User.findOne({summonerName: summonerName}, (err,user) => {
             console.log(user)
