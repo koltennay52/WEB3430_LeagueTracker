@@ -2,6 +2,9 @@
 import {configureRoutes} from './src/javascripts/config/routes';
 import {strategy} from './src/javascripts/config/passport';
 import passport from 'passport';
+import { championData } from './src/javascripts/config/db/championData'; 
+import { Champion } from './src/javascripts/models/Champion';
+
 
 
 let createError = require('http-errors');
@@ -57,6 +60,15 @@ server.on('listening', () => {
     console.log(`Listening on ${bind}`);
 });
 
-
-
+//Seeding Champion Data
+Champion.find().exec((err, champions) => {
+    if (err) {
+        console.log(err);
+    } else {
+        if (champions.length == 0) {
+            console.log('No champions were found in the database, creating records now!');
+            Champion.create(championData);
+        }
+    }
+})
 

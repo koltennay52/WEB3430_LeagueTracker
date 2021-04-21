@@ -1,6 +1,7 @@
-import React from "react"; 
+import React, { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie'
 
-export function Home() {
+export function Home(props) {
 
     return (
         <>
