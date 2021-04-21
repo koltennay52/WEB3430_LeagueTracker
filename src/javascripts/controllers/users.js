@@ -37,12 +37,12 @@ export const signUserInAPI = (req, res, next) => {
   })(req, res, next);
 };
 
-export const retrieveUserIdAPI = (req, res, next) => {
+export const getSummonerNameAPI = (req, res, next) => {
   const token = getUser(req.cookies.token);
 
   if (token) {
-    const userId = token._id;
-    res.status(200).json(userId);
+    const summonerName = token.summonerName;
+    res.status(200).json(summonerName);
     res.end();
   } else {
     res.status(404);

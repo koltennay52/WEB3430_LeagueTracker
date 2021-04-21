@@ -22,7 +22,7 @@ export function Login(props) {
         },
         validationSchema,
         onSubmit(values) {
-            fetch('/api/users/signin', {
+            fetch('/api/v1/users/signin', {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -41,7 +41,7 @@ export function Login(props) {
             }).catch((error) => {
               toast('Failed to sign in', {
                 onClose: () => {
-                  document.location = "/"
+                  document.location = "/login"
                 }
               })
             })

@@ -26,7 +26,7 @@ export function Register(props) {
         },
         validationSchema,
         onSubmit(values) {
-            fetch('/api/users/register', {
+            fetch('/api/v1/users/register', {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -39,13 +39,13 @@ export function Register(props) {
             }).then(() => {
               toast('Successfully signed up', {
                 onClose: () => {
-                  document.location = "/"
+                  document.location = "/login"
                 }
               })
             }).catch((error) => {
               toast('Failed to sign up', {
                 onClose: () => {
-                  document.location = "/"
+                  document.location = "/register"
                 }
               })
             })

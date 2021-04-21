@@ -2,17 +2,17 @@
 // Styles
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
-@import url('https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Work+Sans:wght@400;700&display=swap');
 
-$font-family-sans-serif: 'Raleway', sans-serif;
-$font-family-serif: 'Lusitana', serif;
+$font-family-sans-serif: 'Bitter', serif;
+$font-family-serif: 'Work Sans', sans-serif;
 $enable-responsive-font-sizes: true;
 
 $theme-colors: (
-  "primary": #AC1C2E,
-  "light": #EEF3F4,
-  "secondary": #688694,
-  "info": #A09485,
+  "primary": #07393C,
+  "light": #90DDF0,
+  "secondary": #2C666E,
+  "info": #F0EDEE,
   "danger": #fe5d26
 
 );
