@@ -7,8 +7,15 @@ require.context('../stylesheets/', true, /\.(css|scss)$/i)
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Home } from './components/Home'
-
+import { Register } from './components/Register'
+import { Login } from './components/Login'
 
 if (document.getElementById('main')) {
   ReactDOM.render(<Home/>, document.getElementById('main'))
-}
+} 
+else if (document.getElementById('registerForm')) {
+  ReactDOM.render(<Register/>, document.getElementById('registerForm'))
+} 
+else if (document.getElementById('loginForm')) {
+  ReactDOM.render(<Login/>, document.getElementById('loginForm'))
+} 
