@@ -18,3 +18,30 @@ export const getSummonerDetailsAPI = (req, res, next) => {
     }
   );
 };
+
+export const getSoloRank = (req, res, next) => {
+  let summonerRankList;
+  let soloRank;
+  const request = require("request");
+  request(
+    `https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${req.params.summonerID}?api_key=${riotKey}`,
+    function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        summonerRankList = JSON.parse(body);
+        for (let i = 0; i < summonerRankList.length; i++) {
+          if (summonerRankList[i].queueType == "RANKED_SOLO_5x5") {
+             soloRank = summonerRankList[i]; 
+             break;
+          }
+        }
+        res.status(200).json(soloRank);
+        res.end();
+      }
+      else {
+          res.status(404);
+          res.end();
+      }
+    }
+  );
+};
+

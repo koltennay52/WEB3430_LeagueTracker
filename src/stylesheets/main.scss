@@ -2,18 +2,18 @@
 // Styles
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Work+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
 
-$font-family-sans-serif: 'Bitter', serif;
-$font-family-serif: 'Work Sans', sans-serif;
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-serif: 'Archivo', sans-serif;
 $enable-responsive-font-sizes: true;
 
 $theme-colors: (
-  "primary": #07393C,
-  "light": #90DDF0,
-  "secondary": #2C666E,
-  "info": #F0EDEE,
-  "danger": #fe5d26
+  "primary": #202020,
+  "light": #FFFFFF,
+  "secondary": #06BEE1,
+  "info": #F58F29,
+  "danger": #9E0031
 
 );
 
@@ -38,6 +38,12 @@ body {
 li {
   list-style: none;
 }
+
+
+//HOME PAGE 
+.home-hero {
+	background: linear-gradient(rgba(32, 32, 32, 0.6), rgba(255, 255, 255, 1))
+  }
 
 
 
