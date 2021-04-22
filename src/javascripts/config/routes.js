@@ -4,6 +4,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import { indexPage, registerPage, loginPage } from '../controllers/index'
 import { registerUserAPI, signUserInAPI, getSummonerNameAPI } from '../controllers/users'
+import { getSummonerDetailsAPI } from '../controllers/summoners'
 
 import { APP_SECRET } from './vars';
 
@@ -23,12 +24,13 @@ export function configureRoutes(app) {
     router.get('/register', registerPage)
     router.get('/login', loginPage)
 
-
-
     //USERS API
     router.post('/api/v1/users/register', registerUserAPI)
     router.post('/api/v1/users/signin', signUserInAPI)
     router.get('/api/v1/users/getSummonerName', getSummonerNameAPI);
+
+    //RIOT API
+    router.get('/api/riot/summonerDetails/:summonerName', getSummonerDetailsAPI);
     
 
 

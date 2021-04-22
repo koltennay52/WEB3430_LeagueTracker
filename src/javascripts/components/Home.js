@@ -4,7 +4,9 @@ import { useCookies } from 'react-cookie'
 export function Home(props) {
     const [cookies, setCookie, removeCookie] = useCookies(['token'])
     const [summonerName, setSummonerName] = useState()
+    const [summonerDetails, setSummonerDetails] = useState()
 
+    //retrieve summoner name
     useEffect(() => {
         if (!summonerName) {
           fetch('/api/v1/users/getSummonerName', {
@@ -18,7 +20,12 @@ export function Home(props) {
           })
         }
       })
-
+  // retrieve additional summonerinformation
+  // useEffect(() => {
+  //   if (summonerName) {
+      
+  //   }
+  // })
   
       if (!summonerName){
         return (<span className="text-center">Loading data...</span>)
@@ -29,7 +36,10 @@ export function Home(props) {
             <div>
                 <h2 className="text-center">Welcome, {summonerName}!</h2>
             </div>
+            <div className="container"> 
             
+            
+            </div>
         </>
 
     );
