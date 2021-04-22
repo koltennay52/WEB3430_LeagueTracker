@@ -4,7 +4,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import { indexPage, registerPage, loginPage } from '../controllers/index'
 import { registerUserAPI, signUserInAPI, getSummonerNameAPI } from '../controllers/users'
-import { getSummonerDetailsAPI } from '../controllers/summoners'
+import { getSummonerDetailsAPI } from '../controllers/riot'
 
 import { APP_SECRET } from './vars';
 
