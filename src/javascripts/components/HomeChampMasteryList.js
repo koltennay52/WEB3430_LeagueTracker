@@ -13,7 +13,7 @@ export function HomeChampMasteryList(props) {
           .then((data) => {
             const retrieved_championDetails = JSON.parse(data);
             setChampionDetails(retrieved_championDetails);
-            console.log(retrieved_championDetails);
+            //console.log(retrieved_championDetails);
           });
       }
     }

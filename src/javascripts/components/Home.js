@@ -37,12 +37,12 @@ export function Home(props) {
           .then((data) => {
             const retrieved_summonerDetails = JSON.parse(data);
             setSummonerDetails(retrieved_summonerDetails);
-            console.log(retrieved_summonerDetails);
+            //console.log(retrieved_summonerDetails);
           });
       }
     }
   });
-  // retrieve additional summonerdetails
+  // retrieve rank details
   useEffect(() => {
     if (summonerDetails) {
       if (!soloRank) {
@@ -69,7 +69,7 @@ export function Home(props) {
           .then((data) => {
             const retrieved_mastery = JSON.parse(data);
             setChampMastery(retrieved_mastery);
-            console.log(retrieved_mastery);
+            //console.log(retrieved_mastery);
           });
       }
     }
@@ -92,6 +92,7 @@ export function Home(props) {
     }
   });
 
+
   if (!summonerName || !summonerDetails || !soloRank || !champMastery || !matchList) {
     return <LoadingSpinner />;
   } else {
@@ -108,7 +109,7 @@ export function Home(props) {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-lg-4 col-md-4 col-sm-12">
+            <div className="col-lg-5  col-sm-12">
               <ul>
                 <li>
                   <h3 className="text-center">Mastery</h3>
@@ -137,21 +138,21 @@ export function Home(props) {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-4 col-md-4 col-sm-12">
-              <ul>
+            <div className="col-lg-2 col-sm-12" style={{width: "50%"}}>
+              <ul className="list-group">
                 <li>
                   <h3 className="text-center">{summonerName}</h3>
                 </li>
-                <li className="text-center">
+                <li className="text-center list-group-item">
                   Level: {summonerDetails.summonerLevel}
                 </li>
-                <li className="text-center">
+                <li className="text-center list-group-item">
                   Rank: {soloRank.tier} {soloRank.rank}
                 </li>
-                <li className="text-center">MMR: {soloRank.leaguePoints}</li>
+                <li className="text-center list-group-item">MMR: {soloRank.leaguePoints}</li>
               </ul>
             </div>
-            <div className="col-lg-4 col-md-4 col-sm-12">
+            <div className="col-lg-5  col-sm-12">
             <ul>
                 <li>
                   <h3 className="text-center">Recent Matches</h3>
@@ -161,7 +162,7 @@ export function Home(props) {
                     <thead>
                       <tr>
                         <th scope="col">Role</th>
-                        <th scope="col">Result</th>
+                        <th scope="col">Lane</th>
                         <th scope="col">Date</th>
                       </tr>
                       </thead>

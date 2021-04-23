@@ -2,7 +2,7 @@
 
 import express from 'express'
 import jwt from 'jsonwebtoken'
-import { indexPage, registerPage, loginPage } from '../controllers/index'
+import { indexPage, registerPage, loginPage, championPage } from '../controllers/index'
 import { registerUserAPI, signUserInAPI, getSummonerNameAPI } from '../controllers/users'
 import { getSummonerDetailsAPI, getSoloRankAPI } from '../controllers/summoner'
 import { getTopChampMasteryAPI, getChampionByIDAPI } from '../controllers/champions'
@@ -25,6 +25,7 @@ export function configureRoutes(app) {
     router.get('/', indexPage)
     router.get('/register', registerPage)
     router.get('/login', loginPage)
+    router.get('/championrotation', championPage)
 
     //USERS API
     router.post('/api/v1/users/register', registerUserAPI)
