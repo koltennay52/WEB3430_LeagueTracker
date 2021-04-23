@@ -10,6 +10,7 @@ import { Home } from './components/Home'
 import { Register } from './components/Register'
 import { Login } from './components/Login'
 import { ChampionRotationList } from './components/ChampionRotationList'
+import { SummonerLeague } from './components/SummonerLeague'
 import 'bootstrap';
 
 
@@ -24,4 +25,7 @@ else if (document.getElementById('loginForm')) {
 } 
 else if (document.getElementById('champions')) {
   ReactDOM.render(<ChampionRotationList/>, document.getElementById('champions'))
+} 
+else if (document.getElementById('summonerleague')) {
+  ReactDOM.render(<SummonerLeague/>, document.getElementById('summonerleague'))
 } 

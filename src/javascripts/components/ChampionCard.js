@@ -38,15 +38,16 @@ export function ChampionCard(props) {
           />
           <div className="card-body">
             <h5 className="card-title">{champion.name}</h5>
-            <p className="card-text">
-              {champion.blurb}
-            </p>
-          </div>
-          <ul className="list-group list-group-flush">
+            <ul className="list-group list-group-flush">
             <li className="list-group-item">Mastery Level: {cm.championLevel}</li>
             <li className="list-group-item">Points: {cm.championPoints}</li>
             <li className="list-group-item">Last Played: {date}</li>
           </ul>
+            <p className="card-text">
+              {champion.blurb}
+            </p>
+          </div>
+          
         </div>
       </div>
     );

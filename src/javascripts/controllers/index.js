@@ -13,3 +13,7 @@ export const loginPage = (req, res, next) => {
 export const championPage = (req, res, next) => {
     res.render('layout', {content: 'champions'})
 }
+
+export const leaguePage = (req, res, next) => {
+    res.render('layout', {content: 'summonerleague'})
+}
