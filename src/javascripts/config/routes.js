@@ -4,8 +4,9 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import { indexPage, registerPage, loginPage } from '../controllers/index'
 import { registerUserAPI, signUserInAPI, getSummonerNameAPI } from '../controllers/users'
-import { getSummonerDetailsAPI, getSoloRank } from '../controllers/summoner'
-import { getTopChampMastery, getChampionByIDAPI } from '../controllers/champions'
+import { getSummonerDetailsAPI, getSoloRankAPI } from '../controllers/summoner'
+import { getTopChampMasteryAPI, getChampionByIDAPI } from '../controllers/champions'
+import { getMatchHistoryAPI, getMatchResultAPI } from '../controllers/match'
 
 import { APP_SECRET } from './vars';
 
@@ -33,14 +34,17 @@ export function configureRoutes(app) {
     //RIOT API
     //Summoner
     router.get('/api/summoner/summonerDetails/:summonerName', getSummonerDetailsAPI);
-    router.get('/api/summoner/soloRank/:summonerID', getSoloRank);
+    router.get('/api/summoner/soloRank/:summonerID', getSoloRankAPI);
     //Champion
-    router.get('/api/champions/mastery/:summonerID', getTopChampMastery);
+    router.get('/api/champions/mastery/:summonerID', getTopChampMasteryAPI);
     router.get('/api/champions/:champID', getChampionByIDAPI);
+    //Matches
+    router.get('/api/matches/:accountID', getMatchHistoryAPI);
+    router.get('/api/matches/result/:gameID/:champion', getMatchResultAPI);
 
 
     app.use('/', router)
-}
+} 
 
 
 export function getCurrentUser(req) {

@@ -19,7 +19,7 @@ export const getSummonerDetailsAPI = (req, res, next) => {
   );
 };
 
-export const getSoloRank = (req, res, next) => {
+export const getSoloRankAPI = (req, res, next) => {
   let summonerRankList;
   let soloRank;
   const request = require("request");

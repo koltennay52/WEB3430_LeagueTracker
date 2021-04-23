@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { LoadingSpinner} from './LoadingSpinner'
+import { LoadingSpinner } from "./LoadingSpinner";
+import { HomeChampMasteryList } from "./HomeChampMasteryList";
+import { HomeMatchHistoryList } from "./HomeMatchHistoryList"
 
 export function Home(props) {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [summonerName, setSummonerName] = useState();
   const [summonerDetails, setSummonerDetails] = useState();
   const [soloRank, setSoloRank] = useState();
+  const [champMastery, setChampMastery] = useState();
+  const [matchList, setMatchList] = useState();
 
   //retrieve summoner name
   useEffect(() => {
@@ -55,26 +59,41 @@ export function Home(props) {
     }
   });
   // retrieve mastery list
-  // useEffect(() => {
-  //   if (summonerDetails) {
-  //     if (!soloRank) {
-  //       fetch(`/api/summoner/soloRank/${summonerDetails.id}`, {
-  //         credentials: "same-origin",
-  //       })
-  //         .then((response) => response.text())
-  //         .then((data) => {
-  //           const retrieved_soloRank = JSON.parse(data);
-  //           setSoloRank(retrieved_soloRank);
-  //           //console.log(retrieved_soloRank);
-  //         });
-  //     }
-  //   }
-  // });
+  useEffect(() => {
+    if (summonerDetails) {
+      if (!champMastery) {
+        fetch(`/api/champions/mastery/${summonerDetails.id}`, {
+          credentials: "same-origin",
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            const retrieved_mastery = JSON.parse(data);
+            setChampMastery(retrieved_mastery);
+            console.log(retrieved_mastery);
+          });
+      }
+    }
+  });
 
-  if (!summonerName || !summonerDetails || !soloRank) {
-    return (
-      <LoadingSpinner/>
-    );
+   // retrieve match list
+   useEffect(() => {
+    if (summonerDetails) {
+      if (!matchList) {
+        fetch(`/api/matches/${summonerDetails.accountId}`, {
+          credentials: "same-origin",
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            const retrieved_matchList = JSON.parse(data);
+            setMatchList(retrieved_matchList);
+            //console.log(retrieved_matchList);
+          });
+      }
+    }
+  });
+
+  if (!summonerName || !summonerDetails || !soloRank || !champMastery || !matchList) {
+    return <LoadingSpinner />;
   } else {
     return (
       <>
@@ -91,17 +110,75 @@ export function Home(props) {
           <div className="row">
             <div className="col-lg-4 col-md-4 col-sm-12">
               <ul>
-                <li><h3 className="text-center">{summonerName}</h3></li>
-                <li className="text-center">Level: {summonerDetails.summonerLevel}</li>
-                <li className="text-center">Rank: {soloRank.tier} {soloRank.rank}</li>
+                <li>
+                  <h3 className="text-center">Mastery</h3>
+                </li>
+                <li>
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Champion</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Level</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        {champMastery.map((cm) => {
+                          return (
+                            <HomeChampMasteryList
+                              key={cm.championId}
+                              champMastery={cm}
+                            />
+                          );
+                        })}
+                      </tbody>
+                    
+                  </table>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-12">
+              <ul>
+                <li>
+                  <h3 className="text-center">{summonerName}</h3>
+                </li>
+                <li className="text-center">
+                  Level: {summonerDetails.summonerLevel}
+                </li>
+                <li className="text-center">
+                  Rank: {soloRank.tier} {soloRank.rank}
+                </li>
                 <li className="text-center">MMR: {soloRank.leaguePoints}</li>
               </ul>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-12">
-              <h3 className="text-center">Champion Mastery</h3>
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-12">
-              <h3 className="text-center">Recent Matches</h3>
+            <ul>
+                <li>
+                  <h3 className="text-center">Recent Matches</h3>
+                </li>
+                <li>
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Role</th>
+                        <th scope="col">Result</th>
+                        <th scope="col">Date</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        {matchList.map((ml) => {
+                          return (
+                            <HomeMatchHistoryList
+                              key={ml.gameId}
+                              match={ml}
+                            />
+                          );
+                        })}
+                      </tbody>
+                    
+                  </table>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
