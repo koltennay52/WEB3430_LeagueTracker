@@ -4,7 +4,8 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import { indexPage, registerPage, loginPage } from '../controllers/index'
 import { registerUserAPI, signUserInAPI, getSummonerNameAPI } from '../controllers/users'
-import { getSummonerDetailsAPI, getSoloRank } from '../controllers/riot'
+import { getSummonerDetailsAPI, getSoloRank } from '../controllers/summoner'
+import { getTopChampMastery, getChampionByIDAPI } from '../controllers/champions'
 
 import { APP_SECRET } from './vars';
 
@@ -30,9 +31,12 @@ export function configureRoutes(app) {
     router.get('/api/v1/users/getSummonerName', getSummonerNameAPI);
 
     //RIOT API
-    router.get('/api/riot/summonerDetails/:summonerName', getSummonerDetailsAPI);
-    router.get('/api/riot/soloRank/:summonerID', getSoloRank);
-    
+    //Summoner
+    router.get('/api/summoner/summonerDetails/:summonerName', getSummonerDetailsAPI);
+    router.get('/api/summoner/soloRank/:summonerID', getSoloRank);
+    //Champion
+    router.get('/api/champions/mastery/:summonerID', getTopChampMastery);
+    router.get('/api/champions/:champID', getChampionByIDAPI);
 
 
     app.use('/', router)
