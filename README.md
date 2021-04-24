@@ -1,6 +1,5 @@
-# Starter Project
-A starter web project powered by webpack
-
+# Kolten's League Tracker
+A simple React app built to display competency with the MERN stack. NOTE: you must register with a valid summoner name in the register form.  You can use 'asianspwn13' for testing and grading.
 ## Instructions
 After you clone or download this repository from GitHub, run the following to install required NPM packages. You only need to do this once.
 
