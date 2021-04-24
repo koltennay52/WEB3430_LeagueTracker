@@ -50,6 +50,7 @@
     "passport-local": "^1.0.0",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
+    "react-accessible-accordion": "^3.3.4",
     "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-toastify": "^7.0.3",

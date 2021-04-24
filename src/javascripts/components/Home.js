@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { HomeChampMasteryList } from "./HomeChampMasteryList";
-import { HomeMatchHistoryList } from "./HomeMatchHistoryList"
+import { HomeMatchHistoryList } from "./HomeMatchHistoryList";
 
 export function Home(props) {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
@@ -75,8 +75,8 @@ export function Home(props) {
     }
   });
 
-   // retrieve match list
-   useEffect(() => {
+  // retrieve match list
+  useEffect(() => {
     if (summonerDetails) {
       if (!matchList) {
         fetch(`/api/matches/${summonerDetails.accountId}`, {
@@ -92,59 +92,61 @@ export function Home(props) {
     }
   });
 
-
-  if (!summonerName || !summonerDetails || !soloRank || !champMastery || !matchList) {
+  if (
+    !summonerName ||
+    !summonerDetails ||
+    !soloRank ||
+    !champMastery ||
+    !matchList
+  ) {
     return <LoadingSpinner />;
   } else {
-    var rankPicture = soloRank.tier
+    var rankPicture = soloRank.tier;
     return (
       <>
         <div className="jumbotron jumbotron-fluid home-hero">
           <div className="container text-center">
             <h1 className="display-4">Welcome, {summonerName}!</h1>
             <img
-            style={{ width: "25%"}}
-            src={`http://ddragon.leagueoflegends.com/cdn/10.18.1/img/profileicon/${summonerDetails.profileIconId}.png`}
-            className="rounded-corners"
-            alt="..."
-          />
+              style={{ width: "25%" }}
+              src={`http://ddragon.leagueoflegends.com/cdn/10.18.1/img/profileicon/${summonerDetails.profileIconId}.png`}
+              className="rounded-corners"
+              alt="..."
+            />
           </div>
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-lg-5  col-sm-12">
-              <ul>
-                <li>
-                  <h3 className="text-center">Mastery</h3>
-                </li>
-                <li>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Champion</th>
-                        <th scope="col">Points</th>
-                        <th scope="col">Level</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                        {champMastery.map((cm) => {
-                          return (
-                            <HomeChampMasteryList
-                              key={cm.championId}
-                              champMastery={cm}
-                            />
-                          );
-                        })}
-                      </tbody>
-                    
-                  </table>
-                </li>
-              </ul>
+            <div className="col-lg-5  col-sm-12 mx-auto">
+              <a className="text-info" href="championrotation"><h3 className="text-center">Mastery</h3></a>
+
+              <table className="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Champion</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">Level</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {champMastery.map((cm) => {
+                    return (
+                      <HomeChampMasteryList
+                        key={cm.championId}
+                        champMastery={cm}
+                      />
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
-            <div className="col-lg-2 col-sm-12" style={{width: "50%"}}>
+            <div
+              className="col-lg-2 col-sm-12 mx-auto py-3"
+              style={{ width: "50%" }}
+            >
               <ul className="list-group">
                 <li>
-                  <h3 className="text-center">{summonerName}</h3>
+                  <h3 className="text-center">Statistics</h3>
                 </li>
                 <li className="text-center list-group-item">
                   Level: {summonerDetails.summonerLevel}
@@ -152,37 +154,28 @@ export function Home(props) {
                 <li className="text-center list-group-item">
                   Rank: {soloRank.tier} {soloRank.rank}
                 </li>
-                <li className="text-center list-group-item">MMR: {soloRank.leaguePoints}</li>
+                <li className="text-center list-group-item">
+                  MMR: {soloRank.leaguePoints}
+                </li>
               </ul>
             </div>
-            <div className="col-lg-5  col-sm-12">
-            <ul>
-                <li>
-                  <h3 className="text-center">Recent Matches</h3>
-                </li>
-                <li>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Role</th>
-                        <th scope="col">Lane</th>
-                        <th scope="col">Date</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                        {matchList.map((ml) => {
-                          return (
-                            <HomeMatchHistoryList
-                              key={ml.gameId}
-                              match={ml}
-                            />
-                          );
-                        })}
-                      </tbody>
-                    
-                  </table>
-                </li>
-              </ul>
+            <div className="col-lg-5  col-sm-12 mx-auto">
+              <a className="text-info" href="/matchhistory"><h3 className="text-center">Recent Matches</h3></a>
+
+              <table className="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Role</th>
+                    <th scope="col">Lane</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {matchList.map((ml) => {
+                    return <HomeMatchHistoryList key={ml.gameId} match={ml} />;
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

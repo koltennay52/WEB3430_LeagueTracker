@@ -86,7 +86,7 @@ export function SummonerLeague(props) {
         </h1>
         <div className="container">
           <div className="row">
-            <div className="col-lg-6 col-md-6">
+            <div className="col-lg-6 col-md-6 mx-auto">
               <ul>
                 <li>
                   <h4>Queue: {soloRank.queueType}</h4>
@@ -101,7 +101,7 @@ export function SummonerLeague(props) {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-6 col-md-6">
+            <div className="col-lg-6 col-md-6 mx-auto text-center">
               <img
                 style={{ width: "75%" }}
                 src={require(`../../images/rankemblems/Emblem_${soloRank.tier}.png`)}
@@ -112,7 +112,7 @@ export function SummonerLeague(props) {
 
         <div className="container">
           <div className="row">
-            <div className="col-lg-10 col-md-10 offset-lg-1 offset-md-2">
+            <div className="col-lg-10 col-md-10 offset-lg-1 offset-md-1 mx-auto">
               <div style={{ overflowX: "auto", overflowY: "auto" }}>
                 <table className="table table-striped table-dark">
                   <thead>
