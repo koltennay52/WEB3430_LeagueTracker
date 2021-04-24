@@ -11,6 +11,7 @@ import { Register } from './components/Register'
 import { Login } from './components/Login'
 import { ChampionRotationList } from './components/ChampionRotationList'
 import { SummonerLeague } from './components/SummonerLeague'
+import { SignOut } from './components/SignOut'
 import 'bootstrap';
 
 
@@ -29,3 +30,11 @@ else if (document.getElementById('champions')) {
 else if (document.getElementById('summonerleague')) {
   ReactDOM.render(<SummonerLeague/>, document.getElementById('summonerleague'))
 } 
+
+if(document.querySelector('#_sign_user_out')) {
+  document.querySelector('#_sign_user_out').onclick = (e) => {
+      let el = document.createElement('div')
+      document.body.appendChild(el)
+      ReactDOM.render(<SignOut/>,el)
+  }
+}

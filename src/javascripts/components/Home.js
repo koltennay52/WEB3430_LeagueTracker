@@ -46,7 +46,7 @@ export function Home(props) {
   useEffect(() => {
     if (summonerDetails) {
       if (!soloRank) {
-        fetch(`/api/summoner/soloRank/${summonerDetails.id}`, {
+        fetch(`/api/league/soloRank/${summonerDetails.id}`, {
           credentials: "same-origin",
         })
           .then((response) => response.text())
@@ -96,15 +96,18 @@ export function Home(props) {
   if (!summonerName || !summonerDetails || !soloRank || !champMastery || !matchList) {
     return <LoadingSpinner />;
   } else {
+    var rankPicture = soloRank.tier
     return (
       <>
         <div className="jumbotron jumbotron-fluid home-hero">
           <div className="container text-center">
             <h1 className="display-4">Welcome, {summonerName}!</h1>
             <img
-              style={{ width: "25%" }}
-              src={require("../../images/rankemblems/Emblem_Silver.png")}
-            ></img>
+            style={{ width: "25%"}}
+            src={`http://ddragon.leagueoflegends.com/cdn/10.18.1/img/profileicon/${summonerDetails.profileIconId}.png`}
+            className="rounded-corners"
+            alt="..."
+          />
           </div>
         </div>
         <div className="container">
