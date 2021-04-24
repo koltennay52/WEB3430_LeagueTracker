@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { LeagueParticipant } from "./LeagueParticipant";
+
+function titleCase(string){
+  return string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
+
 export function SummonerLeague(props) {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [summonerName, setSummonerName] = useState();
@@ -79,6 +84,7 @@ export function SummonerLeague(props) {
     var participants = leagueEntries.entries;
     participants.sort((a, b) => b.leaguePoints - a.leaguePoints);
     // console.log(participants.length)
+    var rankPicture = titleCase(soloRank.tier);
     return (
       <>
         <h1 className="mt-5 py-2 font-weight-bold text-secondary text-center">
@@ -104,7 +110,7 @@ export function SummonerLeague(props) {
             <div className="col-lg-6 col-md-6 mx-auto text-center">
               <img
                 style={{ width: "75%" }}
-                src={require(`../../images/rankemblems/Emblem_${soloRank.tier}.png`)}
+                src={require(`../../images/rankemblems/Emblem_${rankPicture}.png`)}
               ></img>
             </div>
           </div>
