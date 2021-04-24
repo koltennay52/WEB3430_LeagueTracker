@@ -6,7 +6,6 @@ import { championData } from './src/javascripts/config/db/championData';
 import { Champion } from './src/javascripts/models/Champion';
 
 
-
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -71,4 +70,5 @@ Champion.find().exec((err, champions) => {
         }
     }
 })
+
 

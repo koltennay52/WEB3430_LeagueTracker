@@ -37,7 +37,7 @@ export function ChampionCard(props) {
             alt="..."
           />
           <div className="card-body">
-            <h5 className="card-title">{champion.name}</h5>
+            <h5 className="card-title text-center">{champion.name}</h5>
             <ul className="list-group list-group-flush">
             <li className="list-group-item">Mastery Level: {cm.championLevel}</li>
             <li className="list-group-item">Points: {cm.championPoints}</li>

@@ -25,34 +25,81 @@ export const getMatchHistoryAPI = (req, res, next) => {
 }
 
 export const getMatchResultAPI = (req, res, next) => {
-    let match;
-    let participants;
-    let summoner; 
-    let result = {};
-    const request = require("request");
-    request(
-      `https://na1.api.riotgames.com/lol/match/v4/matches/${req.params.gameID}?api_key=${riotKey}`,
-      function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-          match = JSON.parse(body);
-          //get matchs unix gameCreation timestamp
-          result.date = new Date(match.gameCreation);
-          participants = match.participants;
-          summoner = participants.filter(obj => {
-            return obj.championId == req.params.champion
-          })
-          result.win = summoner[0].stats.win;
-          result.kills = summoner[0].stats.kills;
-          result.deaths = summoner[0].stats.deaths; 
-          result.assists = summoner[0].stats.assists;
-          res.status(200).json(result);
-          res.end();    
+  let match;
+  let participants;
+  let summoner; 
+  let result = {};
+  const request = require("request");
+  request(
+    `https://na1.api.riotgames.com/lol/match/v4/matches/${req.params.gameID}?api_key=${riotKey}`,
+    function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        match = JSON.parse(body);
+        //get matchs unix gameCreation timestamp
+        result.date = new Date(match.gameCreation);
+        participants = match.participants;
+        summoner = participants.filter(obj => {
+          return obj.championId == req.params.champion
+        })
+        result.win = summoner[0].stats.win;
+        result.kills = summoner[0].stats.kills;
+        result.deaths = summoner[0].stats.deaths; 
+        result.assists = summoner[0].stats.assists;
+      
+        var fullParticipantStatList = match.participants; 
+        var participantIdentities = match.participantIdentities; 
+        for (var i = 0; i < fullParticipantStatList.length; i++){
+          if (fullParticipantStatList[i].participantId == participantIdentities[i].participantId) {
+            fullParticipantStatList[i].teamId = participantIdentities[i].player.summonerName;
+          }
         }
-        else {
-            res.status(404).json(body);
-            res.end();
-        }
+        result.participants = fullParticipantStatList;
+        res.status(200).json(result);
+        res.end();    
       }
-    );
+      else {
+          res.status(404).json(body);
+          res.end();
+      }
+    }
+  );
 }
+
+
+
+
+
+
+//DEPRECATED FOR NOW
+// export const getMatchResultAPI = (req, res, next) => {
+//     let match;
+//     let participants;
+//     let summoner; 
+//     let result = {};
+//     const request = require("request");
+//     request(
+//       `https://na1.api.riotgames.com/lol/match/v4/matches/${req.params.gameID}?api_key=${riotKey}`,
+//       function (error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//           match = JSON.parse(body);
+//           //get matchs unix gameCreation timestamp
+//           result.date = new Date(match.gameCreation);
+//           participants = match.participants;
+//           summoner = participants.filter(obj => {
+//             return obj.championId == req.params.champion
+//           })
+//           result.win = summoner[0].stats.win;
+//           result.kills = summoner[0].stats.kills;
+//           result.deaths = summoner[0].stats.deaths; 
+//           result.assists = summoner[0].stats.assists;
+//           res.status(200).json(result);
+//           res.end();    
+//         }
+//         else {
+//             res.status(404).json(body);
+//             res.end();
+//         }
+//       }
+//     );
+// }
 

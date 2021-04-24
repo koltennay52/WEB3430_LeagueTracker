@@ -17,3 +17,7 @@ export const championPage = (req, res, next) => {
 export const leaguePage = (req, res, next) => {
     res.render('layout', {content: 'summonerleague'})
 }
+
+export const matchHistoryPage = (req, res, next) => {
+    res.render('layout', {content: 'matchhistory'})
+}

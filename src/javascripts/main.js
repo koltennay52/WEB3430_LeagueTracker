@@ -12,6 +12,7 @@ import { Login } from './components/Login'
 import { ChampionRotationList } from './components/ChampionRotationList'
 import { SummonerLeague } from './components/SummonerLeague'
 import { SignOut } from './components/SignOut'
+import { MatchHistory } from './components/MatchHistory'
 import 'bootstrap';
 
 
@@ -29,6 +30,9 @@ else if (document.getElementById('champions')) {
 } 
 else if (document.getElementById('summonerleague')) {
   ReactDOM.render(<SummonerLeague/>, document.getElementById('summonerleague'))
+} 
+else if (document.getElementById('matchHistory')) {
+  ReactDOM.render(<MatchHistory/>, document.getElementById('matchHistory'))
 } 
 
 if(document.querySelector('#_sign_user_out')) {

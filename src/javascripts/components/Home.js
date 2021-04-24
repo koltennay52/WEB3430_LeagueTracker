@@ -101,7 +101,6 @@ export function Home(props) {
   ) {
     return <LoadingSpinner />;
   } else {
-    var rankPicture = soloRank.tier;
     return (
       <>
         <div className="jumbotron jumbotron-fluid home-hero">
