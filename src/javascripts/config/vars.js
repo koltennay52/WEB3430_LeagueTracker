@@ -1,3 +1,3 @@
 export const AUTH_TOKEN_EXPIRES_IN = 7;
 export const APP_SECRET = "changeforproduction";
-export const riotKey = "RGAPI-6bfc0075-f13b-4318-818b-1eba10959c18";
+export const riotKey = "RGAPI-058d46b8-f8ae-4402-9193-9194a9ce67bf";
